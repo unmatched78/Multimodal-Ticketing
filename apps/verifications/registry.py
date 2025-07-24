@@ -1,14 +1,15 @@
-from typing import Dict
-from .interface import VerificationMethod
+from apps.qr.handler import QRMethod
+from apps.nfc.handler import NFCMethod
+from apps.nft.handler import NFTMethod
+from apps.geofence.handler import GeoMethod
+from apps.passbook.handler import PassbookMethod
+from apps.biometric.handler import BiometricMethod
 
-# registry of method_name -> instance
-_registry: Dict[str, VerificationMethod] = {}
-
-def register_method(method: VerificationMethod):
-    _registry[method.name] = method
-
-def get_method(name: str) -> VerificationMethod | None:
-    return _registry.get(name)
-
-def list_methods() -> list[str]:
-    return list(_registry.keys())
+registry = {
+    "qr": QRMethod(),
+    "nfc": NFCMethod(),
+    "nft": NFTMethod(),
+    "geofence": GeoMethod(),
+    "passbook": PassbookMethod(),
+    "biometric": BiometricMethod()
+}

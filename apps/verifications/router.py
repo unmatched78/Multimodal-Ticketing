@@ -1,29 +1,38 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from core.dependencies import get_db, get_current_user
-from apps.verifications.registry import get_method, list_methods
+from db import get_db
+from apps.tickets.crud import get_ticket
+from apps.verifications import registry  # dynamic registry of method handlers
 
-router = APIRouter(prefix="/tickets/{ticket_id}/verify", tags=["verifications"])
+router = APIRouter(prefix="/tickets/{ticket_id}/verify/methods")
 
-@router.get("/methods")
-def available_methods():
-    return {"methods": list_methods()}
+@router.get("/{method}/qr")
+def generate_qr(ticket_id: int, method: str, db: Session = Depends(get_db)):
+    ticket = get_ticket(db, ticket_id)
+    if not ticket:
+        raise HTTPException(404, detail="Ticket not found")
+    
+    handler = registry.get(method)
+    if not handler:
+        raise HTTPException(404, detail="Verification method not supported")
 
-@router.post("/methods/{method}/generate")
-def generate(ticket_id: int, method: str, db: Session = Depends(get_db),
-             user = Depends(get_current_user)):
-    verifier = get_method(method)
-    if not verifier:
-        raise HTTPException(404, "Method not supported")
-    return verifier.generate_credential(ticket_id)
+    if hasattr(handler, "generate_signed_qr"):
+        return handler.generate_signed_qr(ticket_id)
+    
+    return handler.generate_credential(db, ticket_id)
 
-@router.post("/methods/{method}/verify")
-def verify(ticket_id: int, method: str, payload: dict,
-           db: Session = Depends(get_db)):
-    verifier = get_method(method)
-    if not verifier:
-        raise HTTPException(404, "Method not supported")
-    ok = verifier.verify_credential(ticket_id, payload)
-    if not ok:
-        raise HTTPException(400, "Invalid or replayed credential")
-    return {"status": "ok"}
+@router.post("/{method}/verify")
+def verify(ticket_id: int, method: str, presented: dict, db: Session = Depends(get_db)):
+    ticket = get_ticket(db, ticket_id)
+    if not ticket:
+        raise HTTPException(404, detail="Ticket not found")
+
+    handler = registry.get(method)
+    if not handler:
+        raise HTTPException(404, detail="Verification method not supported")
+
+    success = handler.verify_credential(db, ticket_id, presented)
+    if not success:
+        raise HTTPException(403, detail="Invalid or used credential")
+
+    return {"status": "success", "ticket_id": ticket_id}
