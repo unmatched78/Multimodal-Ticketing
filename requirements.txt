@@ -10,3 +10,8 @@ httpx  # For making HTTP requests
 python-multipart  # For handling file uploads
 email-validator  # For validating email addresses
 python-dotenv  # For environment variable management
+clerk-sdk  # Clerk SDK for authentication
+# Optional: Uncomment if you need to use Jinja2 for templating
+# jinja2  # For rendering HTML templates
+# Optional: Uncomment if you need to use Celery for background tasks
+#celery   For background task processing
