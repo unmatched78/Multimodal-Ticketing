@@ -1,0 +1,12 @@
+fastapi
+sqlalchemy
+uvicorn 
+databases
+pydantic                
+# Optional dependencies for additional functionality
+psycopg2-binary  # PostgreSQL database adapter
+aiomysql  # MySQL database adapter
+httpx  # For making HTTP requests
+python-multipart  # For handling file uploads
+email-validator  # For validating email addresses
+python-dotenv  # For environment variable management
