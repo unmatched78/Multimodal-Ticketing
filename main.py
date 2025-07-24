@@ -21,3 +21,6 @@ app.include_router(verifications_router)
 from apps.nfc.handler import NFCMethod
 
 register_method(NFCMethod())
+from apps.block-code.handler import BlockchainNFTMethod
+
+register_method(BlockchainNFTMethod())

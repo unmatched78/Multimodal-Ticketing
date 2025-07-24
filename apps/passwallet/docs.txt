@@ -1,0 +1,7 @@
+#Dynamic Pass / Rotating QR System
+🔐 How it works:
+Each ticket generates a rotating token (e.g. every 30 seconds).
+
+The signed token is verified server-side using a shared secret (or public/private keys).
+
+The ticket is checked for validity and freshness.
