@@ -1,25 +1,19 @@
-import time, jwt
-from core.config import settings
+import uuid
+from sqlalchemy.orm import Session
 from apps.verifications.interface import VerificationMethod
 from apps.verifications.crud import record_credential, mark_used
 
-class QRMethod(VerificationMethod):
-    name = "qr"
+class NFCMethod(VerificationMethod):
+    name = "nfc"
 
-    def generate_credential(self, ticket_id: int) -> dict:
-        payload = {"tid": ticket_id, "exp": time.time() + 300}
-        token = jwt.encode(payload, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
-        # persist so we can mark it used later
-        record_credential(db=... , ticket_id=ticket_id, method=self.name, credential_id=token)
-        return {"qr_token": token}
+    def generate_credential(self, db: Session, ticket_id: int) -> dict:
+        # Simulate generating a unique NFC tag ID
+        tag_id = str(uuid.uuid4())
+        record_credential(db, ticket_id, self.name, tag_id)
+        return {"nfc_tag_id": tag_id}
 
-    def verify_credential(self, ticket_id: int, presented: dict) -> bool:
-        token = presented.get("qr_token")
-        try:
-            data = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
-            if data.get("tid") != ticket_id:
-                return False
-        except jwt.PyJWTError:
+    def verify_credential(self, db: Session, ticket_id: int, presented: dict) -> bool:
+        tag_id = presented.get("nfc_tag_id")
+        if not tag_id:
             return False
-        # mark used exactly once
-        return mark_used(db=..., credential_id=token)
+        return mark_used(db, ticket_id, self.name, tag_id)

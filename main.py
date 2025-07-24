@@ -18,3 +18,6 @@ register_method(QRMethod())
 app.include_router(verifications_router)
 # app.include_router(users_router)
 # app.include_router(tickets_router)
+from apps.nfc.handler import NFCMethod
+
+register_method(NFCMethod())
