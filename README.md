@@ -70,7 +70,7 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 4.  $\color{Orange}\Huge{\textbf{API Endpoints & Flows}}$
+## 4.  $\color{Orange}\Huge{\textbf{API Endpoints and Flows}}$
 
 ### Ticket Lifecycle Endpoints
 - **POST /tickets/**: Create ticket
@@ -88,7 +88,7 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 5.  $\color{Orange}\Huge{\textbf{Data Models & State Tracking}}$
+## 5.  $\color{Orange}\Huge{\textbf{Data Models and State Tracking}}$
 
 - **Ticket**: core fields + `status` (e.g. created, transferred, used)
 - **CredentialRecord**: per‑method records (method_name, credential_id, generated_at, used_at)
@@ -96,7 +96,7 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 6.  $\color{Orange}\Huge{\textbf{Security & Anti‑Fraud}}$
+## 6.  $\color{Orange}\Huge{\textbf{Security and Anti‑Fraud}}$
 
 - **Rate Limiting** on verify endpoints to prevent brute force or replay.
 - **Signature Keys Rotation** for dynamic passes.
@@ -105,11 +105,11 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 7.  $\color{Orange}\Huge{\textbf{Extensibility & Frontend Choices}}$
+## 7.  $\color{Orange}\Huge{\textbf{Extensibility and Frontend Choices}}$
 
 Clients can choose any supported method simply by calling the `generate` endpoint for their preferred flow, then submitting the resulting data to `verify`. The backend ensures consistency and single‑use security under the hood, regardless of front‑end implementation.
 
 ---
 
 
-*$\color{Yellow}\large{\textbf{This design enables a flexible, method‑agnostic ticketing backend that can grow over time with emerging technologies, while providing clear APIs and robust state management.}}$*
+* $\color{Yellow}\large{\textbf{This design enables a flexible, method‑agnostic ticketing backend that can grow over time with emerging technologies, while providing clear APIs and robust state management.}}$ *
