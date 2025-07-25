@@ -1,4 +1,4 @@
-# Backend Design for Multi‑Modal Ticketing Platform
+#  $\color{Green}{\textsf{Backend Design for Multi‑Modal Ticketing Platform}}$
 
 $\color{Red}\Huge{\textsf{N.B: The project is in it's early phase so not much is build yet!}}$
 <br></br>
