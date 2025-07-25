@@ -112,4 +112,4 @@ Clients can choose any supported method simply by calling the `generate` endpoin
 ---
 
 
-* $\color{Yellow}\large{\textbf{This design enables a flexible, method‑agnostic ticketing backend that can grow over time with emerging technologies, while providing clear APIs and robust state management.}}$ *
+ <span> <b> $\color{Yellow}\large{\textbf{This design enables a flexible, method‑agnostic ticketing backend that can grow over time with emerging technologies, while providing clear APIs and robust state management.}}$ </b><span/>
