@@ -6,7 +6,7 @@ This document outlines a modular backend architecture in FastAPI to support vari
 
 ---
 
-## 1. Core Components & Layered Structure
+## 1. $\color{Orange}\Huge{\textbf{Core Components & Layered Structure}}$
 
 ### A. Apps / Feature Modules
 - **tickets**: Core ticketing logic (create, read, update, transfer, revoke)
@@ -25,7 +25,7 @@ This document outlines a modular backend architecture in FastAPI to support vari
 
 ---
 
-## 2. Verification Methods Interface
+## 2. Verification Methods Interface $\color{Orange}\Huge{\textbf{Huge, Bold and colored text}}$
 
 Define a common interface with methods like:
 - `generate_credential(ticket_id) → payload`  
@@ -38,7 +38,7 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 3. Handlers Overview
+## 3.  $\color{Orange}\Huge{\textbf{Handlers Overview}}$
 
 ### 3.1 Smartphone‑to‑Smartphone Scanning
 - **generate**: Create QR payload containing ticket ID + time‑limited signature.  
@@ -70,7 +70,7 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 4. API Endpoints & Flows
+## 4.  $\color{Orange}\Huge{\textbf{API Endpoints & Flows}}$
 
 ### Ticket Lifecycle Endpoints
 - **POST /tickets/**: Create ticket
@@ -88,7 +88,7 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 5. Data Models & State Tracking
+## 5.  $\color{Orange}\Huge{\textbf{Data Models & State Tracking}}$
 
 - **Ticket**: core fields + `status` (e.g. created, transferred, used)
 - **CredentialRecord**: per‑method records (method_name, credential_id, generated_at, used_at)
@@ -96,7 +96,7 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 6. Security & Anti‑Fraud
+## 6.  $\color{Orange}\Huge{\textbf{Security & Anti‑Fraud}}$
 
 - **Rate Limiting** on verify endpoints to prevent brute force or replay.
 - **Signature Keys Rotation** for dynamic passes.
@@ -105,10 +105,11 @@ Each implementation resides in `apps/verifications/handlers/`.
 
 ---
 
-## 7. Extensibility & Frontend Choices
+## 7.  $\color{Orange}\Huge{\textbf{Extensibility & Frontend Choices}}$
 
 Clients can choose any supported method simply by calling the `generate` endpoint for their preferred flow, then submitting the resulting data to `verify`. The backend ensures consistency and single‑use security under the hood, regardless of front‑end implementation.
 
 ---
 
-*This design enables a flexible, method‑agnostic ticketing backend that can grow over time with emerging technologies, while providing clear APIs and robust state management.*
+
+$\color{Yellow}\large{\textbf{*This design enables a flexible, method‑agnostic ticketing backend that can grow over time with emerging technologies, while providing clear APIs and robust state management.*}}$
