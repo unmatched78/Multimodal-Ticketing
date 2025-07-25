@@ -25,7 +25,7 @@ This document outlines a modular backend architecture in FastAPI to support vari
 
 ---
 
-## 2. Verification Methods Interface $\color{Orange}\Huge{\textbf{Huge, Bold and colored text}}$
+## 2.  $\color{Orange}\Huge{\textbf{Verification Methods Interface}}$
 
 Define a common interface with methods like:
 - `generate_credential(ticket_id) → payload`  
@@ -112,4 +112,4 @@ Clients can choose any supported method simply by calling the `generate` endpoin
 ---
 
 
-$\color{Yellow}\large{\textbf{*This design enables a flexible, method‑agnostic ticketing backend that can grow over time with emerging technologies, while providing clear APIs and robust state management.*}}$
+*$\color{Yellow}\large{\textbf{This design enables a flexible, method‑agnostic ticketing backend that can grow over time with emerging technologies, while providing clear APIs and robust state management.}}$*
