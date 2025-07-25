@@ -6,7 +6,7 @@ This document outlines a modular backend architecture in FastAPI to support vari
 
 ---
 
-## 1.  $\color{Orange}\Huge{\textbf{Core Components & Layered Structure}}$
+## 1.  $\color{Orange}\Huge{\textbf{Core Components and Layered Structure}}$
 
 ### A. Apps / Feature Modules
 - **tickets**: Core ticketing logic (create, read, update, transfer, revoke)
