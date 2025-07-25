@@ -1,5 +1,5 @@
 # Backend Design for Multi‑Modal Ticketing Platform
-<span style="color: red">N.B: The project is in it's early phase so not much is build</span>
+<span style="color: red">N.B: The project is in it's early phase so not much is build</span> <br></br>
 This document outlines a modular backend architecture in FastAPI to support various ticket delivery and verification methods. It focuses on clear, robust service layers and pluggable “verification methods” without embedding code examples—defining responsibilities, data flows, and integration points for each approach.
 
 ---
